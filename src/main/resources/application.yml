@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://refuel-aromanote-product.cxsjuy0xww44.ap-northeast-2.rds.amazonaws.com:3306/aromanote_product
+    username: jayjang
+    password: gkgksmf1!
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: trace
