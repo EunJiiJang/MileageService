@@ -26,7 +26,7 @@ public class ReviewController {
      */
     @PostMapping("/events")
     public ResponseEntity<Object> reviewEvents(@RequestBody ReviewReqDto reviewReqDto)throws Exception{
-       String msg = "성공적으로 실행되었습니다.";
+
         if(("ADD").equals(reviewReqDto.getAction())){
             //리뷰작성이력이 있을때
             if (reviewService.getPlaceUserReviewByUserId(reviewReqDto.getUserId(),reviewReqDto.getPlaceId()) > 0){

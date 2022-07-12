@@ -4,7 +4,9 @@ import com.mileageservice.domain.user.User;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -14,15 +16,16 @@ import java.util.UUID;
 @Entity
 @DynamicUpdate
 @Table(name = "TPT01MT")
-public class Point {
+public class Point{
     @Id
-    @Column(name = "userId")
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID totalPointid;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "userId")
-    private User user;
+    private User userId;
 
     @Column
     private int totalPoint;     //총포인트
@@ -36,9 +39,16 @@ public class Point {
     private Timestamp regDate;
 
 
-    public void savePoint(UUID userId, int totalPoint,Timestamp regDate) {
-        this.id = userId;
+
+
+    public void updatePoint(UUID totalPointid,User userId, int totalPoint,Timestamp regDate) {
+        this.totalPointid = totalPointid;
+        this.userId = userId;
         this.totalPoint = totalPoint;
         this.regDate = regDate;
+    }
+    public void saveDefaultPoint(User userId, int totalPoint) {
+        this.userId = userId;
+        this.totalPoint = totalPoint;
     }
 }
