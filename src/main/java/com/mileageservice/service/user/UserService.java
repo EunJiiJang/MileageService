@@ -7,6 +7,10 @@ import com.mileageservice.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -20,14 +24,9 @@ public class UserService {
         User user = new User();
         user.user(uuid);
         userRepository.save(user);
-
-        //회원생성
-        Point point = new Point();
-        point.saveDefaultPoint(user,0);
-        pointRepository.save(point);
-
         return uuid;
 
     }
+
 
 }

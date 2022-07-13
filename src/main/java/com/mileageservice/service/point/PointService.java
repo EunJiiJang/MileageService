@@ -14,19 +14,18 @@ import java.util.UUID;
 @Service
 public class PointService {
         private final PointRepository pointRepository;
-
         public PointResDto getPointByUser(UUID userId){
+                User user = new User();
+                user.user(userId);
+                Optional<Point> point = pointRepository.findByUserId(user);
+                return  new PointResDto(point.get().getUserId(),point.get().getTotalPoint());
+            }
+
+        public void saveDefaultPoint(UUID userId){
             User user = new User();
             user.user(userId);
-            Optional<Point> point = pointRepository.findByUserId(user);
-            return  new PointResDto(point.get().getUserId(),point.get().getTotalPoint());
+            Point point = new Point();
+            point.saveDefaultPoint(user,0);
+            pointRepository.save(point);
         }
-
-    public void saveDefaultPoint(UUID userId){
-        User user = new User();
-        user.user(userId);
-        Point point = new Point();
-        point.saveDefaultPoint(user,0);
-        pointRepository.save(point);
-    }
 }

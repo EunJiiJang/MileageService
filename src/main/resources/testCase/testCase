@@ -1,0 +1,57 @@
+유저 A,B,C,D
+유저A 아이디:bec73cc9-ee28-4c94-a43b-f54f78bdc82c
+유저B 아이디:758ccf5a-9754-4fc8-acfa-142aa98ef858
+유저C 아이디:ee16ae7c-e160-4f31-ac01-3d0110be7511
+유저D 아이디:9a60f19c-de50-4435-8e2d-6dd74b508426
+
+장소 A,B
+A장소 아이디:2e4baf1c-5acb-4efb-a1af-eddada31b00f
+B장소 아이디:77db529c-02e4-11ed-910d-06104ff55042
+
+//추가 유저를 생성하고 싶으시다면 /saveUser POST return으로 userId 넘어옵니다
+
+조건)
+유저A가 A장소의 첫번째 리뷰를 이미 작성하였다.
+글과 이미지 모두 가진 리뷰를 작성함
+"userId": "bec73cc9-ee28-4c94-a43b-f54f78bdc82c",
+수정 리퀘스트(첨부이미지 삭제)
+{
+"type": "REVIEW",
+"action": "MOD",
+"reviewId": "73989dc7-8ec6-475c-b6b0-b5a267466084",
+"content": "A장소의 첫번째 리뷰작성자!",
+"attachedPhotoIds": [],
+"userId": "bec73cc9-ee28-4c94-a43b-f54f78bdc82c",
+"placeId": "2e4baf1c-5acb-4efb-a1af-eddada31b00f"
+}
+
+
+조건)
+유저B가 B장소에 리뷰를 적기 전이다.
+글과 이미지 모두 가진 리뷰를 작성함
+"userId": "758ccf5a-9754-4fc8-acfa-142aa98ef858",
+리뷰수정 리퀘스트(첨부이미지 삭제)
+{
+"type": "REVIEW",
+"action": "ADD",
+"reviewId": "73989dc7-8ec6-475c-b6b0-b5a267466084",
+"content": "B장소의 첫번째 리뷰작성자!",
+"attachedPhotoIds": ["e4d1a64e-a531-46de-88d0-ff0ed70c0bb8", "afb0cef2-851d-4a50-bb07-9cc15cbdc332"],
+"userId": "758ccf5a-9754-4fc8-acfa-142aa98ef858",
+"placeId": "77db529c-02e4-11ed-910d-06104ff55042"
+}
+
+조건)
+유저C가 A장소에 리뷰를 적기 전이다.
+글과 이미지 모두 가진 리뷰를 작성함
+"userId": "ee16ae7c-e160-4f31-ac01-3d0110be7511",
+리뷰수정 리퀘스트(첨부이미지 삭제)
+{
+"type": "REVIEW",
+"action": "ADD",
+"reviewId": "73989dc7-8ec6-475c-b6b0-b5a267466084",
+"content": "A장소의 두번째 리뷰작성자!",
+"attachedPhotoIds": ["e4d1a64e-a531-46de-88d0-ff0ed70c0bb8", "afb0cef2-851d-4a50-bb07-9cc15cbdc332"],
+"userId": "ee16ae7c-e160-4f31-ac01-3d0110be7511",
+"placeId": "2e4baf1c-5acb-4efb-a1af-eddada31b00f"
+}

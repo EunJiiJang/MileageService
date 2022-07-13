@@ -32,11 +32,13 @@ public class Pointcontroller {
         );
     }
 
-    @PostMapping("/Test")
-    public ResponseEntity<Object> Test(){
-        UUID userId = userService.saveUser();
+    @PostMapping("/saveUser")
+    public ResponseEntity<Object> saveUser(){
+        UUID userId = UUID.randomUUID();
+        userService.saveUser(userId);
+        pointService.saveDefaultPoint(userId);
         return new ResponseEntity<>(
-                new ResDto("성공적으로 조회되었습니다.", ""),
+                new ResDto("성공적으로 조회되었습니다.", userId),
                 HttpStatus.OK
         );
     }
